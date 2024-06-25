@@ -93,15 +93,15 @@ void copy_json_files(const std::string& json_dir, const std::string& output_dir)
 
 int main(int argc, char* argv[]) {
     // Check if the correct number of arguments are provided
-    if (argc != 5) {
-        std::cerr << "Usage: " << argv[0] << " <videos_or_images_directory> <json_input_directory> <output_directory> <json_output_directory>" << std::endl;
+    if (argc != 3 && argc != 5) {
+        std::cerr << "Usage: " << argv[0] << " <videos_or_images_directory> <output_directory>  <(optional) json_input_directory> <(optional) json_output_directory>" << std::endl;
         return 1;
     }
 
     std::string input_dir = argv[1];
-    std::string json_input_dir = argv[2];
-    std::string output_dir = argv[3];
-    std::string json_output_dir = argv[4];
+    std::string output_dir = argv[2];
+
+    
 
     // Check if the input directory exists
     if (!fs::exists(input_dir) || !fs::is_directory(input_dir)) {
@@ -135,9 +135,19 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    std::cout << "Copying JSON files..." << std::endl;
+    
 
-    copy_json_files(json_input_dir, json_output_dir);
+    if (argc == 5) {
+        std::cout << "Copying JSON files..." << std::endl;
+
+        std::string json_input_dir = argv[3];
+        std::string json_output_dir = argv[4];
+
+        copy_json_files(json_input_dir, json_output_dir);
+    }
+    else {
+        std::cout << "No JSON directories provided - skipping..." << std::endl;
+    }
 
     return 0;
 }
