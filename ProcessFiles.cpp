@@ -6,7 +6,7 @@
 
 namespace fs = std::filesystem;
 
-#define OUTPUT_SIZE "1920x960"
+#define OUTPUT_SIZE "5760x2880"
 
 // Function to run MediaSDKTest for each input path
 void run_MediaSDKTest(const std::string& input_path, const std::string& output_dir, const std::string& second_eye = "", const std::string& filename = "") {
