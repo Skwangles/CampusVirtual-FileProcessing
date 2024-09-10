@@ -18,8 +18,8 @@ void run_MediaSDKTest(const std::string& input_path, const std::string& output_d
         std::string command = "MediaSDKTest -inputs \"" + 
                 input_path + "\" " + 
             "-output \"" + output_dir + "/" + filename + ".jpg\" "+ 
-            "-stitch_type dynamicstitch " + 
-            "-image_type jpg "+ 
+            "-stitch_type optflow " + 
+            "-image_type png "+ 
             "-output_size " + OUTPUT_SIZE + '\0';
         std::cout << command << std::endl;
         system(command.c_str());
@@ -30,7 +30,9 @@ void run_MediaSDKTest(const std::string& input_path, const std::string& output_d
                     + first_eye + "\" " +
                     "\"" + second_eye + "\" " + 
                 "-output \"" + output_dir + "/" + filename  + ".mp4\" "+ 
-                "-stitch_type dynamicstitch " + 
+                "-stitch_type optflow " +
+                "-enable_flowstate " +
+                "-enable_directionlock " + 
                 "-output_size " + OUTPUT_SIZE + '\0';
          std::cout << command << std::endl;
         system(command.c_str());
